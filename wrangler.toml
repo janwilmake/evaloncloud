@@ -1,8 +1,19 @@
 name = "evaloncloud"
 compatibility_date = "2025-03-01"
 dev.port = 3000
+main = "./main.js"
 assets.directory = "./"
 routes = [
     {custom_domain = true, pattern = "evaloncloud.com"},
     {custom_domain = true, pattern = "www.evaloncloud.com"}
 ]
+
+[vars]
+GITHUB_REDIRECT_URI = "https://evaloncloud.com/callback"
+LOGIN_REDIRECT_URI = "http://evaloncloud.com/thanks"
+
+[[durable_objects.bindings]]
+name = "SPONSOR_DO"
+class_name = "SponsorDO"
+script_name = "sponsorflare"
+
