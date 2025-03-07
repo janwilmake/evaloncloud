@@ -1,0 +1,8 @@
+name = "evaloncloud"
+compatibility_date = "2025-03-01"
+dev.port = 3000
+assets.directory = "./"
+routes = [
+    {custom_domain = true, pattern = "evaloncloud.com"},
+    {custom_domain = true, pattern = "www.evaloncloud.com"}
+]

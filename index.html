@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evalon - Build Agents for the Intelligent Internet</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'evalon-black': '#121212',
+                        'evalon-dark': '#1A1A1A',
+                        'evalon-gray': '#2A2A2A',
+                        'evalon-silver': '#C0C0C0',
+                        'evalon-silver-light': '#E0E0E0',
+                        'evalon-accent': '#7F00FF',
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #121212;
+            color: #E0E0E0;
+            overflow-x: hidden;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(125deg, #121212 0%, #1A1A1A 100%);
+        }
+
+        .glow-text {
+            text-shadow: 0 0 10px rgba(192, 192, 192, 0.5);
+        }
+
+        .glow-button:hover {
+            box-shadow: 0 0 15px rgba(192, 192, 192, 0.4);
+        }
+
+        .grid-bg {
+            background-image: radial-gradient(rgba(192, 192, 192, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        .hero-shine {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-shine::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(to bottom right,
+                    rgba(255, 255, 255, 0) 0%,
+                    rgba(255, 255, 255, 0.05) 50%,
+                    rgba(255, 255, 255, 0) 100%);
+            transform: rotate(30deg);
+            animation: shine 6s infinite linear;
+            pointer-events: none;
+        }
+
+        @keyframes shine {
+            from {
+                transform: translateX(-100%) rotate(30deg);
+            }
+
+            to {
+                transform: translateX(100%) rotate(30deg);
+            }
+        }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .feature-card {
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+
+<body class="font-inter">
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-evalon-black bg-opacity-90 backdrop-blur-md border-b border-evalon-gray">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <!-- Half Moon Logo -->
+                        <svg class="h-8 w-8 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.58 20 4 16.42 4 12C4 7.58 7.58 4 12 4V20Z"
+                                fill="#C0C0C0" />
+                        </svg>
+                        <span class="text-evalon-silver-light font-bold text-xl">Evalon</span>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features"
+                        class="text-evalon-silver hover:text-evalon-silver-light transition-colors duration-200">Features</a>
+                    <a href="#solutions"
+                        class="text-evalon-silver hover:text-evalon-silver-light transition-colors duration-200">Solutions</a>
+                    <a href="#pricing"
+                        class="text-evalon-silver hover:text-evalon-silver-light transition-colors duration-200">Pricing</a>
+                    <a href="#docs"
+                        class="text-evalon-silver hover:text-evalon-silver-light transition-colors duration-200">Documentation</a>
+                    <a href="#login"
+                        class="text-evalon-silver-light font-medium hover:text-white transition-colors duration-200">Log
+                        in</a>
+                    <a href="#signup"
+                        class="bg-evalon-silver text-evalon-black px-4 py-2 rounded-md font-medium hover:bg-evalon-silver-light transition-colors duration-200 glow-button">Get
+                        Started</a>
+                </div>
+                <div class="flex md:hidden items-center">
+                    <button type="button" class="text-evalon-silver hover:text-evalon-silver-light">
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen pt-20 grid-bg hero-shine">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-24 md:pt-32 md:pb-48">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="md:w-1/2 md:pr-12">
+                    <h1
+                        class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-evalon-silver-light glow-text mb-6">
+                        Build agents for the <span
+                            class="text-transparent bg-clip-text bg-gradient-to-r from-evalon-silver to-evalon-silver-light">intelligent
+                            internet</span>
+                    </h1>
+                    <p class="text-xl md:text-2xl text-evalon-silver mb-8">
+                        Seamlessly create, authenticate, monetize, and supervise your AI agents on the cloud platform
+                        built for the next generation of the internet.
+                    </p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="#signup"
+                            class="bg-evalon-silver text-evalon-black px-6 py-3 rounded-md font-medium text-lg hover:bg-evalon-silver-light transition-colors duration-200 text-center glow-button">
+                            Start Building
+                        </a>
+                        <a href="#demo"
+                            class="border border-evalon-silver text-evalon-silver-light px-6 py-3 rounded-md font-medium text-lg hover:bg-evalon-gray hover:border-evalon-silver-light transition-colors duration-200 text-center">
+                            Watch Demo
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 mt-12 md:mt-0">
+                    <div class="relative">
+                        <!-- Floating illustration/mockup -->
+                        <div class="relative z-10 floating">
+                            <svg width="500" height="400" viewBox="0 0 500 400" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <!-- Platform diagram -->
+                                <rect x="100" y="100" width="300" height="200" rx="10" fill="#1A1A1A" stroke="#C0C0C0"
+                                    stroke-width="2" />
+                                <circle cx="250" cy="150" r="30" fill="#2A2A2A" stroke="#C0C0C0" stroke-width="2" />
+                                <path d="M250 130 L250 170" stroke="#C0C0C0" stroke-width="2" />
+                                <path d="M230 150 L270 150" stroke="#C0C0C0" stroke-width="2" />
+                                <rect x="150" y="200" width="60" height="40" rx="5" fill="#2A2A2A" stroke="#C0C0C0"
+                                    stroke-width="2" />
+                                <rect x="220" y="200" width="60" height="40" rx="5" fill="#2A2A2A" stroke="#C0C0C0"
+                                    stroke-width="2" />
+                                <rect x="290" y="200" width="60" height="40" rx="5" fill="#2A2A2A" stroke="#C0C0C0"
+                                    stroke-width="2" />
+                                <circle cx="180" cy="220" r="10" fill="#7F00FF" />
+                                <circle cx="250" cy="220" r="10" fill="#7F00FF" />
+                                <circle cx="320" cy="220" r="10" fill="#7F00FF" />
+                                <path d="M180 220 L250 150" stroke="#C0C0C0" stroke-width="1" stroke-dasharray="4 2" />
+                                <path d="M250 220 L250 150" stroke="#C0C0C0" stroke-width="1" stroke-dasharray="4 2" />
+                                <path d="M320 220 L250 150" stroke="#C0C0C0" stroke-width="1" stroke-dasharray="4 2" />
+                            </svg>
+                        </div>
+                        <!-- Glow effect -->
+                        <div class="absolute inset-0 bg-evalon-accent opacity-5 blur-3xl rounded-full"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Animated particles background -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+            <div id="particles" class="absolute inset-0"></div>
+        </div>
+    </section>
+
+    <!-- Trusted By Section -->
+    <section class="py-12 bg-evalon-dark border-y border-evalon-gray">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p class="text-center text-evalon-silver mb-8 text-sm uppercase tracking-wider">Trusted by innovative
+                companies worldwide</p>
+            <div
+                class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center justify-items-center opacity-60">
+                <!-- Company logos in silver/grayscale -->
+                <div class="h-8">
+                    <svg class="h-full" viewBox="0 0 100 30" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="10" y="10" width="80" height="10" rx="5" fill="#C0C0C0" />
+                    </svg>
+                </div>
+                <div class="h-8">
+                    <svg class="h-full" viewBox="0 0 100 30" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="15" r="10" fill="#C0C0C0" />
+                        <rect x="15" y="10" width="70" height="10" rx="5" fill="#C0C0C0" />
+                    </svg>
+                </div>
+                <div class="h-8">
+                    <svg class="h-full" viewBox="0 0 100 30" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 10 L50 10 L80 10 L80 20 L50 20 L20 20 Z" fill="#C0C0C0" />
+                    </svg>
+                </div>
+                <div class="h-8">
+                    <svg class="h-full" viewBox="0 0 100 30" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="30" y="5" width="40" height="20" rx="10" fill="#C0C0C0" />
+                    </svg>
+                </div>
+                <div class="h-8">
+                    <svg class="h-full" viewBox="0 0 100 30" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M25 15 L50 5 L75 15 L50 25 Z" fill="#C0C0C0" />
+                    </svg>
+                </div>
+                <div class="h-8">
+                    <svg class="h-full" viewBox="0 0 100 30" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="30" cy="15" r="10" fill="#C0C0C0" />
+                        <circle cx="70" cy="15" r="10" fill="#C0C0C0" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-24 gradient-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-evalon-silver-light mb-4">Built for the intelligent
+                    internet</h2>
+                <p class="text-xl text-evalon-silver max-w-3xl mx-auto">Evalon provides everything you need to build,
+                    deploy, and scale autonomous agents with built-in security and monetization.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-evalon-black p-8 rounded-xl border border-evalon-gray feature-card">
+                    <div class="w-12 h-12 bg-evalon-gray rounded-lg flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-evalon-silver" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-evalon-silver-light mb-3">Agent Creation</h3>
+                    <p class="text-evalon-silver">Build intelligent agents using our intuitive interface or powerful
+                        API. Deploy in minutes with scalable infrastructure.</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="bg-evalon-black p-8 rounded-xl border border-evalon-gray feature-card">
+                    <div class="w-12 h-12 bg-evalon-gray rounded-lg flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-evalon-silver" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-evalon-silver-light mb-3">Built-in Authentication</h3>
+                    <p class="text-evalon-silver">Secure your agents with industry-standard authentication protocols.
+                        Manage access and identities with ease.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="bg-evalon-black p-8 rounded-xl border border-evalon-gray feature-card">
+                    <div class="w-12 h-12 bg-evalon-gray rounded-lg flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-evalon-silver" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-evalon-silver-light mb-3">Monetization Framework</h3>
+                    <p class="text-evalon-silver">Transform your agents into revenue streams with flexible monetization
+                        options. Subscription, pay-per-use, or custom models.</p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="bg-evalon-black p-8 rounded-xl border border-evalon-gray feature-card">
+                    <div class="w-12 h-12 bg-evalon-gray rounded-lg flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-evalon-silver" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-evalon-silver-light mb-3">Advanced Security</h3>
+                    <p class="text-evalon-silver">Enterprise-grade security to protect your agents and data. Encryption,
+                        access controls, and compliance features built-in.</p>
+                </div>
+
+                <!-- Feature 5 -->
+                <div class="bg-evalon-black p-8 rounded-xl border border-evalon-gray feature-card">
+                    <div class="w-12 h-12 bg-evalon-gray rounded-lg flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-evalon-silver" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-evalon-silver-light mb-3">Comprehensive Analytics</h3>
+                    <p class="text-evalon-silver">Monitor performance, usage patterns, and user engagement. Make
+                        data-driven decisions to optimize your agents.</p>
+                </div>
+
+                <!-- Feature 6 -->
+                <div class="bg-evalon-black p-8 rounded-xl border border-evalon-gray feature-card">
+                    <div class="w-12 h-12 bg-evalon-gray rounded-lg flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-evalon-silver" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-evalon-silver-light mb-3">Agent Supervision</h3>
+                    <p class="text-evalon-silver">Keep your agents in check with comprehensive monitoring tools. Set
+                        guardrails and ensure ethical, responsible AI behavior.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="py-24 bg-evalon-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-evalon-silver-light mb-4">How Evalon Works</h2>
+                <p class="text-xl text-evalon-silver max-w-3xl mx-auto">From concept to deployment in three simple
+                    steps.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Step 1 -->
+                <div class="relative">
+                    <div class="absolute top-0 left-1/2 -ml-2.5 h-full w-0.5 bg-evalon-gray hidden md:block"></div>
+                    <div class="relative z-10 bg-evalon-dark p-8 rounded-xl border border-evalon-gray">
+                        <div
+                            class="absolute top-8 -left-4 w-8 h-8 bg-evalon-silver rounded-full flex items-center justify-center text-evalon-black font-bold md:block hidden">
+                            1</div>
+                        <h3 class="text-xl font-semibold text-evalon-silver-light mb-4 md:pl-6">Create Your Agent</h3>
+                        <p class="text-evalon-silver md:pl-6">Define your agent's capabilities, integrations, and
+                            behavior. Use our no-code builder or flexible API to create powerful intelligent agents.</p>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="relative">
+                    <div class="absolute top-0 left-1/2 -ml-2.5 h-full w-0.5 bg-evalon-gray hidden md:block"></div>
+                    <div class="relative z-10 bg-evalon-dark p-8 rounded-xl border border-evalon-gray">
+                        <div
+                            class="absolute top-8 -left-4 w-8 h-8 bg-evalon-silver rounded-full flex items-center justify-center text-evalon-black font-bold md:block hidden">
+                            2</div>
+                        <h3 class="text-xl font-semibold text-evalon-silver-light mb-4 md:pl-6">Configure & Secure</h3>
+                        <p class="text-evalon-silver md:pl-6">Set up authentication, establish monetization parameters,
+                            and implement supervision guidelines for your agent.</p>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="relative">
+                    <div class="relative z-10 bg-evalon-dark p-8 rounded-xl border border-evalon-gray">
+                        <div
+                            class="absolute top-8 -left-4 w-8 h-8 bg-evalon-silver rounded-full flex items-center justify-center text-evalon-black font-bold md:block hidden">
+                            3</div>
+                        <h3 class="text-xl font-semibold text-evalon-silver-light mb-4 md:pl-6">Deploy & Scale</h3>
+                        <p class="text-evalon-silver md:pl-6">Launch your agent to the world and scale effortlessly as
+                            demand grows. Our infrastructure adapts to your needs in real-time.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-24 bg-evalon-dark border-y border-evalon-gray">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-evalon-silver-light mb-6">Ready to build for the intelligent
+                internet?</h2>
+            <p class="text-xl text-evalon-silver mb-10 max-w-3xl mx-auto">Join innovative companies already building the
+                future with Evalon. Start creating powerful agents today.</p>
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+                <a href="#signup"
+                    class="bg-evalon-silver text-evalon-black px-8 py-4 rounded-md font-medium text-lg hover:bg-evalon-silver-light transition-colors duration-200 glow-button">
+                    Start Building Free
+                </a>
+                <a href="#contact"
+                    class="border border-evalon-silver text-evalon-silver-light px-8 py-4 rounded-md font-medium text-lg hover:bg-evalon-gray hover:border-evalon-silver-light transition-colors duration-200">
+                    Contact Sales
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-evalon-black py-12 border-t border-evalon-gray">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
+                <div class="col-span-2 lg:col-span-1">
+                    <div class="flex items-center mb-6">
+                        <!-- Half Moon Logo -->
+                        <svg class="h-8 w-8 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.58 20 4 16.42 4 12C4 7.58 7.58 4 12 4V20Z"
+                                fill="#C0C0C0" />
+                        </svg>
+                        <span class="text-evalon-silver-light font-bold text-xl">Evalon</span>
+                    </div>
+                    <p class="text-evalon-silver mb-6">Building the foundation for the intelligent internet. Create,
+                        secure, monetize, and supervise AI agents with ease.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-evalon-silver hover:text-evalon-silver-light">
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+                            </svg>
+                        </a>
+                        <a href="#" class="text-evalon-silver hover:text-evalon-silver-light">
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path fill-rule="evenodd"
+                                    d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                        <a href="#" class="text-evalon-silver hover:text-evalon-silver-light">
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path fill-rule="evenodd"
+                                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c5.51 0 10-4.48 10-10S17.51 2 12 2zm6.605 4.61a8.502 8.502 0 011.93 5.314c-.281-.054-3.101-.629-5.943-.271-.065-.141-.12-.293-.184-.445a25.416 25.416 0 00-.564-1.236c3.145-1.28 4.577-3.124 4.761-3.362zM12 3.475c2.17 0 4.154.813 5.662 2.148-.152.216-1.443 1.941-4.48 3.08-1.399-2.57-2.95-4.675-3.189-5A8.687 8.687 0 0112 3.475zm-3.633.803a53.896 53.896 0 013.167 4.935c-3.992 1.063-7.517 1.04-7.896 1.04a8.581 8.581 0 014.729-5.975zM3.453 12.01v-.26c.37.01 4.512.065 8.775-1.215.25.477.477.965.694 1.453-.109.033-.228.065-.336.098-4.404 1.42-6.747 5.303-6.942 5.629a8.522 8.522 0 01-2.19-5.705zM12 20.547a8.482 8.482 0 01-5.239-1.8c.152-.315 1.888-3.656 6.703-5.337.022-.01.033-.01.054-.022a35.318 35.318 0 011.823 6.475 8.4 8.4 0 01-3.341.684zm4.761-1.465c-.086-.52-.542-3.015-1.659-6.084 2.679-.423 5.022.271 5.314.369a8.468 8.468 0 01-3.655 5.715z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-evalon-silver-light font-semibold mb-4">Platform</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-evalon-silver hover:text-evalon-silver-light">Features</a></li>
+                        <li><a href="#" class="text-evalon-silver hover:text-evalon-silver-light">Pricing</a></li>
+                        <li><a href="#" class="text-evalon-silver hover:text-evalon-silver-light">Security</a></li>
+                        <li><a href="#" class="text-evalon-silver hover:text-evalon-silver-light">Roadmap</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-evalon-silver-light font-semibold mb-4">Resources</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-evalon-silver hover:text-evalon-silver-light">Documentation</a></li>
+                        <li><a href="#" class="text-evalon-silver hover:text-evalon-silver-light">API Reference</a></li>
+                        <li><a href="#" class="text-evalon-silver hover:text-evalon-silver-light">Tutorials</a></li>
+                        <li><a href="#" class="text-evalon-silver hover:text-evalon-silver-light">Blog</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-evalon-silver-light font-semibold mb-4">Company</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-evalon-silver hover:text-evalon-silver-light">About</a></li>
+                        <li><a href="#" class="text-evalon-silver hover:text-evalon-silver-light">Careers</a></li>
+                        <li><a href="#" class="text-evalon-silver hover:text-evalon-silver-light">Contact</a></li>
+                        <li><a href="#" class="text-evalon-silver hover:text-evalon-silver-light">Partners</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-evalon-silver-light font-semibold mb-4">Legal</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-evalon-silver hover:text-evalon-silver-light">Privacy</a></li>
+                        <li><a href="#" class="text-evalon-silver hover:text-evalon-silver-light">Terms</a></li>
+                        <li><a href="#" class="text-evalon-silver hover:text-evalon-silver-light">Cookie Policy</a></li>
+                        <li><a href="#" class="text-evalon-silver hover:text-evalon-silver-light">Licenses</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-12 pt-8 border-t border-evalon-gray flex flex-col md:flex-row justify-between items-center">
+                <p class="text-evalon-silver text-sm">&copy; 2025 Evalon. All rights reserved.</p>
+                <div class="mt-4 md:mt-0">
+                    <a href="#" class="text-evalon-silver hover:text-evalon-silver-light text-sm mx-3">Privacy
+                        Policy</a>
+                    <a href="#" class="text-evalon-silver hover:text-evalon-silver-light text-sm mx-3">Terms of
+                        Service</a>
+                    <a href="#" class="text-evalon-silver hover:text-evalon-silver-light text-sm mx-3">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for animated particles -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const particlesContainer = document.getElementById('particles');
+
+            // Create particles
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.style.position = 'absolute';
+                particle.style.width = Math.random() * 3 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.backgroundColor = '#C0C0C0';
+                particle.style.borderRadius = '50%';
+                particle.style.opacity = Math.random() * 0.5;
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+
+                // Animation
+                particle.style.animation = `float ${Math.random() * 10 + 10}s linear infinite`;
+                particle.style.animationDelay = `-${Math.random() * 10}s`;
+
+                particlesContainer.appendChild(particle);
+            }
+        });
+    </script>
+</body>
+
+</html>
