@@ -15,5 +15,5 @@ LOGIN_REDIRECT_URI = "http://evaloncloud.com/thanks"
 [[durable_objects.bindings]]
 name = "SPONSOR_DO"
 class_name = "SponsorDO"
-script_name = "sponsorflare"
+script_name = "sponsorflare2"
 
